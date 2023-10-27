@@ -1,7 +1,7 @@
 class Car {
-    currentBrand;
-    currentModel;
-    currentHorsepower;
+    private currentBrand;
+    private currentModel;
+    private currentHorsepower;
 
     constructor(brand: string, model: string, horsepower: number) {
         this.currentBrand = brand;
@@ -42,5 +42,5 @@ class Car {
 // console.log(urus.model);
 // urus.brand = "BMW";
 // urus.model = "M8";
-// urus.currentHorsepower = 625;
+// urus.horsepower = 625;
 // console.log(urus.stringify());
