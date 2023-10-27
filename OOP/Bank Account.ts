@@ -15,12 +15,12 @@ class BankAccount {
     }
 
     
-    public get InterestRate() {
+    public get InterestRate():number {
         return this.InterestRate;
     }
 
     
-    Deposit(amount: number) {
+    Deposit(amount: number): void {
         this.Balance += amount;
     }
 }
