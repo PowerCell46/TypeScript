@@ -1,4 +1,4 @@
-interface NameTest {
+interface NameTest { // Interface for a function
     (param1: number, param2: string): string
 }
 

@@ -46,5 +46,4 @@ let calc: Calculator = function (a: number, b: number, operation: string): numbe
         "/": (a:number, b:number) => a / b
     }
     return operations[operation](a, b);
-
 }

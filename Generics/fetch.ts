@@ -26,11 +26,9 @@ interface Company {
 }
 
 async function fetchData(): Promise<void> {
-    const response = await  fetch("https://jsonplaceholder.typicode.com/users");
+    const response: Response = await fetch("https://jsonplaceholder.typicode.com/users");
     const data: User[] = await response.json();
     console.log(data);
-    // const ids = data.map((d) => d.id);
-    // console.log(ids);    
 }
 
 console.log(fetchData());
