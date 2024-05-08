@@ -6,7 +6,7 @@ class Box<T> {
     }
 
     toString() {
-        return `${this.prop} is of type ${typeof this.prop}`
+        return `${this.prop} is of type ${typeof this.prop}`;
     }
 }
 

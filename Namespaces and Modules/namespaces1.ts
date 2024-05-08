@@ -5,6 +5,7 @@ namespace Greeter {
     }
 }
 
+
 namespace PersonUtils { 
     interface Introduction {
         (): string
@@ -33,4 +34,5 @@ namespace PersonUtils {
 
 
 const meInstance:PersonUtils.PersonInterface = new PersonUtils.Person("Peter", 20);
+
 console.log(meInstance.introduction());

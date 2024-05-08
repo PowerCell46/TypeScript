@@ -21,4 +21,3 @@ class Cat extends Animal {
         
     }
 }
-

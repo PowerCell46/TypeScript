@@ -12,13 +12,17 @@ const daysOfTheWeekObj: DaysOfTheWeek = {
     "Sunday": 7
 };
 
-function dayOfWeek(day: string): number {
-    return daysOfTheWeekObj[day];
-};
+// function dayOfWeek(day: string): number {
+//     return daysOfTheWeekObj[day];
+// };
 
 
 // function dayOfWeek(day: string): number {
-//     const daysOfTheWeekObj = {
+//     interface WeekDays {
+//         [key: string]: number
+//     };
+
+//     const daysOfTheWeekObj: WeekDays = {
 //         "Monday": 1,
 //         "Tuesday": 2,
 //         "Wednesday": 3,
