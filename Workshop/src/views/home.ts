@@ -1,0 +1,1 @@
+export const homeView = `<div>Hello, from Home page</div>`;

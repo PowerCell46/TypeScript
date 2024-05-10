@@ -1,0 +1,1 @@
+export const aboutView = `<div>Hello, from About page</div>`;

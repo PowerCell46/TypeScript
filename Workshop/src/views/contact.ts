@@ -1,0 +1,1 @@
+export const contactView = `<div>Hello, from Contact page</div>`;
