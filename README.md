@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/PowerCell46/React-JS/blob/main/ReactJS%20-Oct%202023%20-%20Peter%20Gerdzhikov.jpeg"
+  <img src="https://github.com/PowerCell46/TypeScript/blob/main/TypeScript%20-%20Oct%202023%20-%20Peter%20Gerdzhikov.jpeg"
   alt="JS-Backend-Jan-2024">
 </div>
 
