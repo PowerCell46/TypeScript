@@ -1,5 +1,5 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
-import { authenticationHandler } from "../controllers/authController";
+import { authenticationHandler } from "../controllers/services/authController";
 
 
 export default function login(): TemplateResult {

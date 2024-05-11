@@ -1,10 +1,11 @@
-import { post } from "../utils/api";
-import { setAuthData } from "../utils/authUtils";
-import { urlEndpoints } from "../utils/constants";
-import { AuthData } from "../utils/interfaces";
+import { post } from "../../utils/api";
+import { removeAuthData, setAuthData } from "../../utils/authUtils";
+import { urlEndpoints } from "../../utils/constants";
+import { AuthData } from "../../utils/interfaces";
+import page from "page";
 
 
-export function authenticationHandler(event: SubmitEvent, view: string) {
+export function authenticationHandler(event: SubmitEvent, view: string): void {
     event.preventDefault();
 
     const formElement = event.target as HTMLFormElement;
@@ -13,7 +14,12 @@ export function authenticationHandler(event: SubmitEvent, view: string) {
 
     let email = Object.fromEntries(data.entries())["email"] as string;
     let password = Object.fromEntries(data.entries())["password"] as string;
-    email = email.trim(); password = password.trim();
+   
+    email = email.trim(); password = password.trim(); // sanitization
+
+    if (email === "" || password === "") { // validation
+        return alert("You cannot submit with empty fields!");
+    }
 
     if (view === "Register") {
         let repeatPassword = Object.fromEntries(data.entries())["re-password"] as string;
@@ -29,11 +35,18 @@ export function authenticationHandler(event: SubmitEvent, view: string) {
     urlEndpoints.login, 
     {email, password})
         .then(data => {
-            setAuthData(data.accessToken, data._id);
+            // console.log(data);
             
-            // is authenticated
+            setAuthData(data.accessToken, data._id);
 
-            //navigate
+            page.redirect("/");
         })
         .catch(err => console.error(err));
+}
+
+
+export function logoutHandler(): void {
+    removeAuthData();
+
+    page.redirect("/");
 }

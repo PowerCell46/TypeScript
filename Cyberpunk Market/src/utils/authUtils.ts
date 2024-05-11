@@ -25,3 +25,9 @@ export function isAuthenticated(): boolean {
 export function getUserId(): string | null {
     return localStorage.getItem(USER_ID);
 }
+
+
+export function removeAuthData() {
+    localStorage.removeItem(AUTH_TOKEN);
+    localStorage.removeItem(USER_ID);
+}

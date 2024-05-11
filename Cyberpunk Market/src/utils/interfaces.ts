@@ -12,6 +12,19 @@ export interface AuthData {
 };
 
 
+export interface ItemData {
+    _ownerId: string,
+    item: string,
+    imageUrl: string,
+    price: number,
+    availability: string,
+    type: string,
+    description: string,
+    _createdOn: number,
+    _id: string
+};
+
+
 export interface PageContext {
     isAuthenticated?: boolean;
     userId?: string | null;

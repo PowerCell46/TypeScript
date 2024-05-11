@@ -1,15 +1,19 @@
 import page from "page";
-import { homeView } from './controllers/homeController';
-import { registerView } from './controllers/registerController';
-import { loginView } from "./controllers/loginController";
-import { dashboardView } from "./controllers/dashboard";
-import { detailsView } from "./controllers/detailsController";
-import { createView } from "./controllers/createController";
-import { editView } from "./controllers/editController";
+import { homeView } from './controllers/views/homeController';
+import { registerView } from './controllers/views/registerController';
+import { loginView } from "./controllers/views/loginController";
+import { dashboardView } from "./controllers/views/dashboard";
+import { detailsView } from "./controllers/views/detailsController";
+import { createView } from "./controllers/views/createController";
+import { editView } from "./controllers/views/editController";
 import authMiddleware from "./middlewares/authMiddleware";
+import headerMiddleware from "./middlewares/headerMiddleware";
 
 
 page(authMiddleware);
+
+page(headerMiddleware);
+
 
 
 page("/", homeView);
