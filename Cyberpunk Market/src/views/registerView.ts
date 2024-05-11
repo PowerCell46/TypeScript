@@ -1,4 +1,5 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
+import { authenticationHandler } from "../controllers/authController";
 
 
 export default function register(): TemplateResult {
@@ -6,7 +7,9 @@ export default function register(): TemplateResult {
     <section id="register">
           <div class="form">
             <h2>Register</h2>
-            <form class="register-form">
+            <form @submit=${(event: SubmitEvent) => 
+                authenticationHandler(event, "Register")}
+              class="register-form">
               <input
                 type="text"
                 name="email"

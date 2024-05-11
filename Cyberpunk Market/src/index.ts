@@ -6,10 +6,13 @@ import { dashboardView } from "./controllers/dashboard";
 import { detailsView } from "./controllers/detailsController";
 import { createView } from "./controllers/createController";
 import { editView } from "./controllers/editController";
+import authMiddleware from "./middlewares/authMiddleware";
 
-// Middlewares here
 
-page("/", () => homeView());
+page(authMiddleware);
+
+
+page("/", homeView);
 
 
 page("/register", () => registerView());
