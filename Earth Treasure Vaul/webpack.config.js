@@ -2,11 +2,11 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-    target: 'node',  // Ensures webpack compiles for a Node.js environment
-    mode: 'development',  // Set the mode to development to avoid the mode warning
+    target: 'node',
+    mode: 'development',
     entry: path.resolve(__dirname, "src/index.ts"),
     externals: {
-        express: 'commonjs express'  // This tells webpack not to bundle express
+        express: 'commonjs express'
     },
     module: {
         rules: [
