@@ -1,4 +1,4 @@
-import renderView from "../../utils/renderView";
+import renderView from "../../utils/render";
 import dashboard from "../../views/dashboardView";
 import { getAllItems } from "../services/itemController";
 

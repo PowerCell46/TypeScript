@@ -1,6 +1,6 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
 import { authenticationHandler } from "../controllers/services/authController";
-import { urlEndpoints } from "../utils/constants";
+import { appEndpoints, urlEndpoints } from "../utils/constants";
 
 
 export default function register(): TemplateResult {
@@ -9,7 +9,7 @@ export default function register(): TemplateResult {
           <div class="form">
             <h2>Register</h2>
             <form @submit=${(event: SubmitEvent) => 
-                authenticationHandler(event, "Register")}
+                authenticationHandler(event, appEndpoints.register)}
               class="register-form">
               <input
                 type="text"

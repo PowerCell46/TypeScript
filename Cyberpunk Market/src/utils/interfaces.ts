@@ -1,7 +1,8 @@
 export interface UrlEndpoints {
     register: string,
     login: string,
-    items: string
+    items: string,
+    itemsDesc: string
 };
 
 
@@ -35,6 +36,11 @@ export interface ItemData {
     description: string,
     _createdOn: number,
     _id: string
+};
+
+
+export interface DeleteData {
+    _deletedOn: number
 };
 
 

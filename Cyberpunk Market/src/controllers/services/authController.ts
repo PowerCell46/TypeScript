@@ -1,6 +1,7 @@
 import { post } from "../../utils/api";
 import { removeAuthData, setAuthData } from "../../utils/authUtils";
 import { appEndpoints, urlEndpoints } from "../../utils/constants";
+import displayErrorMessage from "../../utils/displayError";
 import { AuthData } from "../../utils/interfaces";
 import page from "page";
 
@@ -18,19 +19,19 @@ export function authenticationHandler(event: SubmitEvent, view: string): void {
     email = email.trim(); password = password.trim(); // sanitization
 
     if (email === "" || password === "") { // validation
-        return alert("You cannot submit with empty fields!");
+        return displayErrorMessage("You cannot submit with empty fields!");
     }
 
-    if (view === "Register") {
+    if (view === appEndpoints.register) {
         let repeatPassword = Object.fromEntries(data.entries())["re-password"] as string;
         repeatPassword = repeatPassword.trim();
 
         if (repeatPassword !== password) {
-            return alert("Password and Repeat password must match!");
+            return displayErrorMessage("Passwords don't match");
         }       
     }
 
-    post<AuthData>(view === "Register" ? 
+    post<AuthData>(view === appEndpoints.register ? 
     urlEndpoints.register : 
     urlEndpoints.login, 
     {email, password})

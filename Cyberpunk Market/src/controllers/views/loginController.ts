@@ -1,4 +1,4 @@
-import renderView from "../../utils/renderView";
+import renderView from "../../utils/render";
 import login from "../../views/loginView";
 
 

@@ -1,9 +1,10 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
-import { ItemData } from "../utils/interfaces";
+import { ItemData, PageContext } from "../utils/interfaces";
 import { appEndpoints } from "../utils/constants";
+import { deleteHandler } from "../controllers/services/itemController";
 
 
-export default function details(itemData: ItemData, isCreator: boolean): TemplateResult {
+export default function details(itemData: ItemData, isCreator: boolean, ctx: PageContext): TemplateResult {
     return html`
             <section id="details">
           <div id="details-wrapper">
@@ -26,7 +27,7 @@ export default function details(itemData: ItemData, isCreator: boolean): Templat
               ${isCreator ? html`
                 <div id="action-buttons">
                   <a href=${`${appEndpoints.edit}/${itemData._id}`} id="edit-btn">Edit</a>
-                  <a href="" id="delete-btn">Delete</a>
+                  <a @click=${() => deleteHandler(itemData._id, ctx)} href="javascript:void(0)" id="delete-btn">Delete</a>
                 </div>` 
               : 
                 ""

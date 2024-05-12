@@ -1,5 +1,5 @@
 import { PageContext } from "../../utils/interfaces";
-import renderView from "../../utils/renderView";
+import renderView from "../../utils/render";
 import edit from "../../views/editView";
 import { getSingleItem } from "../services/itemController";
 

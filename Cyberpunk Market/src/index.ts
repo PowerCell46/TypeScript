@@ -6,7 +6,7 @@ import { dashboardView } from "./controllers/views/dashboard";
 import { detailsView } from "./controllers/views/detailsController";
 import { createView } from "./controllers/views/createController";
 import { editView } from "./controllers/views/editController";
-import authMiddleware from "./middlewares/authMiddleware";
+import authMiddleware, { authForbidden, authRequired, creatorRequired } from "./middlewares/authMiddlewares";
 import headerMiddleware from "./middlewares/headerMiddleware";
 import { appEndpoints } from "./utils/constants";
 
@@ -15,25 +15,24 @@ page(authMiddleware);
 
 page(headerMiddleware);
 
-// authRequired authForbidden isCreator !!! middlewares
 
 
 page(appEndpoints.home, homeView);
 
 
-page(appEndpoints.register, registerView);
+page(appEndpoints.register, authForbidden, registerView);
 
-page(appEndpoints.login, loginView);
+page(appEndpoints.login, authForbidden, loginView);
 
 
 
-page(appEndpoints.create, createView);
+page(appEndpoints.create, authRequired, createView);
 
 page(appEndpoints.dashboard, dashboardView);
 
 page(`${appEndpoints.details}/:id`, detailsView);
 
-page(`${appEndpoints.edit}/:id`, editView);
+page(`${appEndpoints.edit}/:id`, creatorRequired, editView);
 
 
 page.start();

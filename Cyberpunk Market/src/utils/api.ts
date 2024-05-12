@@ -1,5 +1,6 @@
 import { getAuthToken } from "./authUtils";
 import { METHODS_WITH_BODY, headerToken } from "./constants";
+import displayErrorMessage from "./displayError";
 
 
 async function api<T>(url: string, method: string, body?: any): Promise<T> {
@@ -35,7 +36,7 @@ async function api<T>(url: string, method: string, body?: any): Promise<T> {
 
     } catch (error: unknown) {
         if (error instanceof Error) {
-            alert(error.message);
+            displayErrorMessage(error.message);
             
             console.error(`Error in request: ${error.message}`);
             

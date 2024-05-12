@@ -1,5 +1,5 @@
 import { PageContext, PageNext } from "../utils/interfaces";
-import { renderHeader } from "../utils/renderView";
+import { renderHeader } from "../utils/render";
 import header from "../views/header";
 
 

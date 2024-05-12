@@ -1,10 +1,22 @@
-import { get, post, put } from "../../utils/api";
+import { creatorRequired } from "../../middlewares/authMiddlewares";
+import { del, get, post, put } from "../../utils/api";
 import { appEndpoints, urlEndpoints } from "../../utils/constants";
-import { ItemData } from "../../utils/interfaces";
+import displayErrorMessage from "../../utils/displayError";
+import { DeleteData, ItemData, PageContext } from "../../utils/interfaces";
 import page from "page";
 
 
-export function itemHandler(event: SubmitEvent, view: string):void {
+export function getAllItems(): Promise<ItemData[]> {
+    return get<ItemData[]>(urlEndpoints.itemsDesc);
+}
+
+
+export function getSingleItem(_id: string | undefined): Promise<ItemData> {
+    return get<ItemData>(`${urlEndpoints.items}/${_id}`);
+}
+
+
+export function itemHandler(event: SubmitEvent, view: string): void {
     event.preventDefault();
 
     const formElement = event.target as HTMLFormElement;
@@ -23,10 +35,10 @@ export function itemHandler(event: SubmitEvent, view: string):void {
 
     if (imageUrl === "" || availability === "" || type === "" ||
     item === "" || description == "") { // validation
-        return alert("You cannot submit with empty fields!");
+        return displayErrorMessage("You cannot submit with empty fields!");
     
     } else if (price <= 0) {
-        return alert("Invalid Price entered!");
+        return displayErrorMessage("Invalid Price entered!");
     }
 
     if (view === appEndpoints.create) {
@@ -54,11 +66,12 @@ export function itemHandler(event: SubmitEvent, view: string):void {
 }
 
 
-export function getAllItems(): Promise<ItemData[]> {
-    return get<ItemData[]>(urlEndpoints.items);
-}
-
-
-export function getSingleItem(_id: string | undefined): Promise<ItemData> {
-    return get<ItemData>(`${urlEndpoints.items}/${_id}`);
+export function deleteHandler(id: string | undefined, ctx: PageContext): void {
+    creatorRequired(ctx);
+    
+    if (confirm("Are you sure you want to delete this item?")) {
+        del<DeleteData>(`${urlEndpoints.items}/${id}`)
+            .then(data => page.redirect(appEndpoints.dashboard))
+            .catch(err => console.error(err));
+    }
 }

@@ -1,4 +1,4 @@
-import {TemplateResult, render} from "../../node_modules/lit-html/lit-html";
+import {TemplateResult, render} from "lit-html";
 import { headerElement, mainElement } from "./constants";
 
 
