@@ -3,6 +3,7 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+import { authMiddleware } from "./middlewares/authMiddleware";
 import router from "./router";
 import { DB_CONNECTION, SERVER_PORT } from "./utils/constants";
 
@@ -20,7 +21,7 @@ app.use(express.urlencoded({extended: false})); // parses the sent data
 
 
 app.use(cookieParser());
-
+app.use(authMiddleware);
 app.use(router);
 
 

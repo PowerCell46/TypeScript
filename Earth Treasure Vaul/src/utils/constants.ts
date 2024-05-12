@@ -12,6 +12,11 @@ export const SERVER_ENDPOINTS: ENDPOINTS = {
     home: "/",
     register: "/register",
     login: "/login",
+    logout: "/logout",
     create: "/create",
-    error: "/404"
+    error: "/404",
+    edit: "/edit",
+    dashboard: "/dashboard",
+    details: "/details",
+    search: "/search" // ???
 };

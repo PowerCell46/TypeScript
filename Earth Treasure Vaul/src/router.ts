@@ -4,9 +4,15 @@ import { SERVER_ENDPOINTS } from "./utils/constants";
 import { getLoginView, loginHandler } from "./controllers/login";
 import { getHomeView } from "./controllers/home";
 import { createHandler, getCreateView } from "./controllers/create";
+import { logoutHandler } from "./controllers/logout";
+import { getDashboardView } from "./controllers/dashboard";
+import { getDetailsView } from "./controllers/details";
+import { editHandler, getEditView } from "./controllers/edit";
+import { getErrorView } from "./controllers/error";
 
 
-router.get(SERVER_ENDPOINTS.home, getHomeView);
+router
+.get(SERVER_ENDPOINTS.home, getHomeView);
 
 
 router.route(SERVER_ENDPOINTS.register)
@@ -17,9 +23,27 @@ router.route(SERVER_ENDPOINTS.login)
 .get(getLoginView)
 .post(loginHandler);
 
+router
+.get(SERVER_ENDPOINTS.logout, logoutHandler);
+
 
 router.route(SERVER_ENDPOINTS.create)
 .get(getCreateView)
-.post(createHandler)
+.post(createHandler);
+
+router
+.get(SERVER_ENDPOINTS.dashboard, getDashboardView);
+
+router
+.get(`${SERVER_ENDPOINTS.details}/:id`, getDetailsView);
+
+router.route(SERVER_ENDPOINTS.edit)
+.get(getEditView)
+.post(editHandler);
+
+
+router
+.all("*", getErrorView);
+
 
 export default router;

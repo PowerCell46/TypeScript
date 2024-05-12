@@ -22,21 +22,21 @@
             <!-- Navigation -->
             <nav>
                 <div>
-                    <a href="/">Home</a>
-                    <a href="/dashboard">Dashboard</a>
-                    <a href="#">Search</a>
+                    <a href="{{SERVER_ENDPOINTS.home}}">Home</a>
+                    <a href="{{SERVER_ENDPOINTS.dashboard}}">Dashboard</a>
+                    <a href="{{SERVER_ENDPOINTS.search}}">Search</a>
                 </div>
 
                 <!-- Logged-in users -->
                 <div class="user">
-                    <a href="/create">Add Stones</a>
-                    <a href="/logout">Logout</a>
+                    <a href="{{SERVER_ENDPOINTS.create}}">Add Stones</a>
+                    <a href="{{SERVER_ENDPOINTS.logout}}">Logout</a>
                 </div>
 
                 <!-- Guest users -->
                 <div class="guest">
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
+                    <a href="{{SERVER_ENDPOINTS.login}}">Login</a>
+                    <a href="{{SERVER_ENDPOINTS.register}}">Register</a>
                 </div>
             </nav>
         </header>
