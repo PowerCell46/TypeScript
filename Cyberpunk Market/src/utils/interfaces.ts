@@ -1,5 +1,18 @@
 export interface UrlEndpoints {
-    [key: string]: string
+    register: string,
+    login: string,
+    items: string
+};
+
+
+export interface AppEndpoints {
+    home: string,
+    register: string,
+    login: string,
+    create: string,
+    dashboard: string,
+    details: string,
+    edit: string
 };
 
 
@@ -25,9 +38,15 @@ export interface ItemData {
 };
 
 
+interface Params {
+    id: string
+};
+
+
 export interface PageContext {
     isAuthenticated?: boolean;
     userId?: string | null;
+    params?: Params,
     [key: string]: any;
 };
 

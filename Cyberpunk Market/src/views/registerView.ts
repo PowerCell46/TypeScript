@@ -1,5 +1,6 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
 import { authenticationHandler } from "../controllers/services/authController";
+import { urlEndpoints } from "../utils/constants";
 
 
 export default function register(): TemplateResult {
@@ -29,7 +30,7 @@ export default function register(): TemplateResult {
                 placeholder="repeat password"
               />
               <button type="submit">register</button>
-              <p class="message">Already registered? <a href="#">Login</a></p>
+              <p class="message">Already registered? <a href=${urlEndpoints.login}>Login</a></p>
             </form>
           </div>
         </section>

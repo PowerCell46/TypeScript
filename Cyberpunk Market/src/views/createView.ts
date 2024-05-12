@@ -1,5 +1,6 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
 import { itemHandler } from "../controllers/services/itemController";
+import { appEndpoints } from "../utils/constants";
 
 
 export default function create(): TemplateResult {
@@ -7,7 +8,7 @@ export default function create(): TemplateResult {
     <section id="create">
           <div class="form form-item">
             <h2>Share Your item</h2>
-            <form @submit=${(event: SubmitEvent) => itemHandler(event, "Create")} class="create-form">
+            <form @submit=${(event: SubmitEvent) => itemHandler(event, appEndpoints.create)} class="create-form">
               <input type="text" name="item" id="item" placeholder="Item" />
               <input
                 type="text"

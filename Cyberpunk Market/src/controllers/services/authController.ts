@@ -1,6 +1,6 @@
 import { post } from "../../utils/api";
 import { removeAuthData, setAuthData } from "../../utils/authUtils";
-import { urlEndpoints } from "../../utils/constants";
+import { appEndpoints, urlEndpoints } from "../../utils/constants";
 import { AuthData } from "../../utils/interfaces";
 import page from "page";
 
@@ -39,7 +39,7 @@ export function authenticationHandler(event: SubmitEvent, view: string): void {
             
             setAuthData(data.accessToken, data._id);
 
-            page.redirect("/");
+            page.redirect(appEndpoints.home);
         })
         .catch(err => console.error(err));
 }
@@ -48,5 +48,5 @@ export function authenticationHandler(event: SubmitEvent, view: string): void {
 export function logoutHandler(): void {
     removeAuthData();
 
-    page.redirect("/");
+    page.redirect(appEndpoints.home);
 }

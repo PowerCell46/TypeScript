@@ -1,4 +1,4 @@
-import { UrlEndpoints } from "./interfaces";
+import { AppEndpoints, UrlEndpoints } from "./interfaces";
 
 export const mainElement: HTMLElement | null = document.getElementById('main-element');
 
@@ -14,11 +14,23 @@ export const USER_ID: string = "userId";
 
 const BASE_URL: string = `http://localhost:3030`;
 
+
 export const urlEndpoints: UrlEndpoints = {
     register: `${BASE_URL}/users/register`,
     login: `${BASE_URL}/users/login`,
     items: `${BASE_URL}/data/cyberpunk`
-}
+};
+
+
+export const appEndpoints: AppEndpoints = {
+    home: "/",
+    login: "/login",
+    register: "/register",
+    create: "/create",
+    dashboard: "/dashboard",
+    details: "/details",
+    edit: "/edit"
+};
 
 
 // --------------------------------------------------------

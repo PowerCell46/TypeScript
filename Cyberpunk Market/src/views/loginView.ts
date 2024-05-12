@@ -1,5 +1,6 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
 import { authenticationHandler } from "../controllers/services/authController";
+import { urlEndpoints } from "../utils/constants";
 
 
 export default function login(): TemplateResult {
@@ -19,7 +20,7 @@ export default function login(): TemplateResult {
               />
               <button type="submit">login</button>
               <p class="message">
-                Not registered? <a href="#">Create an account</a>
+                Not registered? <a href=${urlEndpoints.register}>Create an account</a>
               </p>
             </form>
           </div>

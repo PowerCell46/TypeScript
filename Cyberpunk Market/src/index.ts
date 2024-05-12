@@ -8,30 +8,32 @@ import { createView } from "./controllers/views/createController";
 import { editView } from "./controllers/views/editController";
 import authMiddleware from "./middlewares/authMiddleware";
 import headerMiddleware from "./middlewares/headerMiddleware";
+import { appEndpoints } from "./utils/constants";
 
 
 page(authMiddleware);
 
 page(headerMiddleware);
 
+// authRequired authForbidden isCreator !!! middlewares
 
 
-page("/", homeView);
+page(appEndpoints.home, homeView);
 
 
-page("/register", () => registerView());
+page(appEndpoints.register, registerView);
 
-page("/login", () => loginView());
+page(appEndpoints.login, loginView);
 
 
 
-page("/create", () => createView());
+page(appEndpoints.create, createView);
 
-page("/dashboard", () => dashboardView());
+page(appEndpoints.dashboard, dashboardView);
 
-page("/details/:id", () => detailsView());
+page(`${appEndpoints.details}/:id`, detailsView);
 
-page("/edit/:id", () => editView());
+page(`${appEndpoints.edit}/:id`, editView);
 
 
 page.start();

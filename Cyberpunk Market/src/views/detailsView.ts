@@ -1,35 +1,37 @@
 import {TemplateResult, html} from "../../node_modules/lit-html/lit-html";
+import { ItemData } from "../utils/interfaces";
+import { appEndpoints } from "../utils/constants";
 
 
-export default function details(): TemplateResult {
+export default function details(itemData: ItemData, isCreator: boolean): TemplateResult {
     return html`
             <section id="details">
           <div id="details-wrapper">
             <div>
-              <img id="details-img" src="./images/drone.png" alt="example1" />
-              <p id="details-title">Drone</p>
+              <img id="details-img" src=${itemData.imageUrl} alt="example1" />
+              <p id="details-title">${itemData.item}</p>
             </div>
             <div id="info-wrapper">
               <div id="details-description">
-                <p class="details-price">Price: €1200</p>
+                <p class="details-price">Price: €${itemData.price}</p>
                 <p class="details-availability">
-                  Mass-Market Retail, Online Marketplace
+                  ${itemData.availability}
                 </p>
-                <p class="type">Type: Advanced Surveillance</p>
+                <p class="type">Type: ${itemData.type}</p>
                 <p id="item-description">
-                  The Sky Seeker is an invaluable tool for exploration and
-                  surveillance. Its compact size and maneuverability make it
-                  ideal for navigating tight spaces and gathering data, while
-                  its high-resolution cameras provide clear images even in
-                  low-light conditions. With the Sky Seeker, you can stay ahead
-                  of the curve in the ever-changing world of cyberpunk.
+                  ${itemData.description}
                 </p>
               </div>
-              <!--Edit and Delete are only for creator-->
-              <div id="action-buttons">
-                <a href="" id="edit-btn">Edit</a>
-                <a href="" id="delete-btn">Delete</a>
-              </div>
+
+              ${isCreator ? html`
+                <div id="action-buttons">
+                  <a href=${`${appEndpoints.edit}/${itemData._id}`} id="edit-btn">Edit</a>
+                  <a href="" id="delete-btn">Delete</a>
+                </div>` 
+              : 
+                ""
+              }
+              
             </div>
           </div>
         </section>

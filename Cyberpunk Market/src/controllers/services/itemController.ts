@@ -1,5 +1,5 @@
-import { get, post } from "../../utils/api";
-import { urlEndpoints } from "../../utils/constants";
+import { get, post, put } from "../../utils/api";
+import { appEndpoints, urlEndpoints } from "../../utils/constants";
 import { ItemData } from "../../utils/interfaces";
 import page from "page";
 
@@ -29,16 +29,36 @@ export function itemHandler(event: SubmitEvent, view: string):void {
         return alert("Invalid Price entered!");
     }
 
-    post<ItemData>(urlEndpoints.items, {item, imageUrl, price, availability, type, description})  
-        .then(data => {
-            console.log(data);
-            
-            page.redirect("/dashboard");
-        })
-        .catch(err => console.error(err));  
+    if (view === appEndpoints.create) {
+        post<ItemData>(urlEndpoints.items, 
+        {item, imageUrl, price, availability, type, description})  
+            .then(data => {
+                console.log(data);
+                
+                page.redirect(appEndpoints.dashboard);
+            })
+            .catch(err => console.error(err)); 
+    
+    } else {
+        let _id = Object.fromEntries(data.entries())["_id"] as string;
+        
+        put<ItemData>(`${urlEndpoints.items}/${_id}`, 
+        {item, imageUrl, price, availability, type, description})
+            .then(data => {
+                // console.log(data);
+                
+                page.redirect(`${appEndpoints.details}/${_id}`);
+            })
+            .catch(err => console.error(err));
+    } 
 }
 
 
 export function getAllItems(): Promise<ItemData[]> {
     return get<ItemData[]>(urlEndpoints.items);
+}
+
+
+export function getSingleItem(_id: string | undefined): Promise<ItemData> {
+    return get<ItemData>(`${urlEndpoints.items}/${_id}`);
 }
