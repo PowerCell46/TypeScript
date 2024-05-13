@@ -14,3 +14,16 @@ export interface ENDPOINTS {
 export interface ExpressNext {
     (): void
 }
+
+export interface UserInterface {
+    email: string,
+    password: string,
+    _id: any,
+    __v: number
+}
+
+
+export interface TokenInterface {
+    email: string,
+    _id: string
+}

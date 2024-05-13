@@ -8,6 +8,12 @@ export const DB_CONNECTION: string = `mongodb://127.0.0.1:27017/${APP_NAME}`;
 
 export const SALT_ROUNDS: number = 13;
 
+export const TOKEN_SECRET: string = `PowerCell46`;
+
+export const TOKEN_EXPIRATION: string = `1d`;
+
+export const cookieName: string = `authTokenCookie`; 
+
 export const SERVER_ENDPOINTS: ENDPOINTS = {
     home: "/",
     register: "/register",

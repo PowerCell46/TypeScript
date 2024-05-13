@@ -19,7 +19,6 @@
 
     <div id="wrapper">
         <header>
-            <!-- Navigation -->
             <nav>
                 <div>
                     <a href="{{SERVER_ENDPOINTS.home}}">Home</a>
@@ -27,17 +26,17 @@
                     <a href="{{SERVER_ENDPOINTS.search}}">Search</a>
                 </div>
 
-                <!-- Logged-in users -->
-                <div class="user">
-                    <a href="{{SERVER_ENDPOINTS.create}}">Add Stones</a>
-                    <a href="{{SERVER_ENDPOINTS.logout}}">Logout</a>
-                </div>
-
-                <!-- Guest users -->
-                <div class="guest">
-                    <a href="{{SERVER_ENDPOINTS.login}}">Login</a>
-                    <a href="{{SERVER_ENDPOINTS.register}}">Register</a>
-                </div>
+                {{#if isAuthenticated}}
+                    <div class="user">
+                        <a href="{{SERVER_ENDPOINTS.create}}">Add Stones</a>
+                        <a href="{{SERVER_ENDPOINTS.logout}}">Logout</a>
+                    </div>
+                {{else}}
+                    <div class="guest">
+                        <a href="{{SERVER_ENDPOINTS.login}}">Login</a>
+                        <a href="{{SERVER_ENDPOINTS.register}}">Register</a>
+                    </div>
+                {{/if}}
             </nav>
         </header>
 
