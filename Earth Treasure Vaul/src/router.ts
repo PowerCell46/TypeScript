@@ -9,6 +9,7 @@ import { getDashboardView } from "./controllers/dashboard";
 import { getDetailsView } from "./controllers/details";
 import { editHandler, getEditView } from "./controllers/edit";
 import { getErrorView } from "./controllers/error";
+import {deleteHandler} from "./controllers/delete";
 
 
 router
@@ -37,10 +38,12 @@ router
 router
 .get(`${SERVER_ENDPOINTS.details}/:id`, getDetailsView);
 
-router.route(SERVER_ENDPOINTS.edit)
+router.route(`${SERVER_ENDPOINTS.edit}/:id`)
 .get(getEditView)
 .post(editHandler);
 
+router
+.get(`${SERVER_ENDPOINTS.delete}/:id`, deleteHandler);
 
 router
 .all("*", getErrorView);

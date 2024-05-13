@@ -7,6 +7,7 @@ export interface ENDPOINTS {
     details: string,
     dashboard: string,
     edit: string,
+    delete: string,
     error: string
     search: string, // ???
 }

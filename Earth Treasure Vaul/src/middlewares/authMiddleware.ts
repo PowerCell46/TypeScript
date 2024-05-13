@@ -27,7 +27,7 @@ export function authMiddleware(req: Request, res: Response, next: ExpressNext) {
         res.locals.isAuthenticated = false;
     }
     
-    console.log(res.locals.isAuthenticated);
+    // console.log(res.locals.isAuthenticated);
     
     res.locals.SERVER_ENDPOINTS  = SERVER_ENDPOINTS as ENDPOINTS;
 

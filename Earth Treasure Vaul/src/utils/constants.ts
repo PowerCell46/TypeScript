@@ -22,6 +22,7 @@ export const SERVER_ENDPOINTS: ENDPOINTS = {
     create: "/create",
     error: "/404",
     edit: "/edit",
+    delete: "/delete",
     dashboard: "/dashboard",
     details: "/details",
     search: "/search" // ???
