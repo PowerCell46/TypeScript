@@ -17,7 +17,7 @@ export function registerHandler(req: Request, res: Response) {
         .then(hashedPass => {
             User.create({email, password: hashedPass})
                 .then((user: UserInterface) => {
-                    const token = createToken(user.email, user._id);
+                    const token: string = createToken(user.email, user._id);
 
                     setCookie(res, token);
 

@@ -11,9 +11,11 @@ export interface ENDPOINTS {
     search: string, // ???
 }
 
+
 export interface ExpressNext {
     (): void
 }
+
 
 export interface UserInterface {
     email: string,
@@ -26,4 +28,18 @@ export interface UserInterface {
 export interface TokenInterface {
     email: string,
     _id: string
+}
+
+
+export interface StoneInterface {
+    category: string,
+    color: string,
+    image: string,
+    location: string,
+    formula: string,
+    description: string,
+    likedList: any[],
+    owner: any,
+    _id: any,
+    __v: number
 }

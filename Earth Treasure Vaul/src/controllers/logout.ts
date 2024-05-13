@@ -8,7 +8,6 @@ export function logoutHandler(req: Request, res: Response) {
     
     const userEmail = (req as any).email;
 
-    
     console.log(`User ${userEmail} successfully logged out!`);
     
     res.redirect(SERVER_ENDPOINTS.home);

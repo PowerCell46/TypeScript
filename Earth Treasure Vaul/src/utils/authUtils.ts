@@ -9,6 +9,11 @@ export function hashPassword(password: string): Promise<string> {
 }
 
 
+export function verifyPassword(password: string, hashedPass: string): Promise<boolean> {
+    return bcrypt.compare(password, hashedPass);
+}
+
+
 export function createToken(email: string, _id: string): string {
     const tokenData:TokenInterface = {
         email, 
@@ -28,7 +33,7 @@ export function verifyToken(token: string): TokenInterface {
     try {
         const result = jwt.verify(token, TOKEN_SECRET) as TokenInterface;
         return result;
-        
+
     } catch (error) {
         throw new Error("Invalid Token");
     }
