@@ -5,14 +5,16 @@ import { Stone } from "../schemas/Stone";
 import { SERVER_ENDPOINTS } from "../utils/constants";
 
 
-export function getEditView(req: Request, res: Response): void {
+export function getEditView(req: Request, res: Response): void {    
     const stoneId = req.params.id;
 
     getSingleStone(stoneId)
         .then((stoneData: StoneInterface) => {
             res.render("edit", {stoneData});
         })
-        .catch(err => console.error(err));
+        .catch((err: Error) => 
+            res.render("error", {error: "Error fetching the data!"}
+        ));
 }
 
 
@@ -23,9 +25,13 @@ export function editHandler(req: Request, res: Response): void {
     
     Stone.findByIdAndUpdate(stoneId, {name, category, color, image, location, formula, description})
         .then((stoneData: StoneInterface) => {
-            console.log(stoneData);
+            // console.log(stoneData);
             
             res.redirect(`${SERVER_ENDPOINTS.details}/${stoneId}`);
         })
-        .catch((err: Error) => console.error(err));
+        .catch((err: Error) => {
+            console.log(`Error updating the Stone!`);
+            
+            res.render("edit", {name, category, color, image, location, formula, description})
+        });
 }

@@ -1,17 +1,60 @@
- <main class="edit">
+{{#if error}}
+<div>
+    <div class="errorContainer">
+        <p>{{error}}</p>
+    </div>
+</div>
+{{/if}}
+
+<main class="edit">
     <section id="edit">
         <div class="form">
             <h2>Edit item</h2>
             <form method="POST" class="edit-form">
-                <input type="text" name="name" id="name" placeholder="Name" value="{{stoneData.name}}" />
-                <input type="text" name="category" id="category" placeholder="Category" value="{{stoneData.category}}" />
-                <input type="text" name="color" id="color" placeholder="Color" value="{{stoneData.color}}" />
-                <input type="text" name="image" id="stone-img" placeholder="Image" value="{{stoneData.image}}" />
-                <input type="text" name="location" id="location" placeholder="Location" value="{{stoneData.location}}" />
-                <input type="text" name="formula" id="formula" placeholder="Formula" value="{{stoneData.formula}}" />
-                <textarea id="description" placeholder="Description..." name="description">{{stoneData.description}}
-                </textarea>
+                {{#if name}}
+                    <input type="text" name="name" id="name" placeholder="Name" value="{{name}}" />
+                {{else}}
+                    <input type="text" name="name" id="name" placeholder="Name" value="{{stoneData.name}}" />
+                {{/if}}
 
+                {{#if category}}
+                    <input type="text" name="category" id="category" placeholder="Category" value="{{category}}" />
+                {{else}}
+                    <input type="text" name="category" id="category" placeholder="Category" value="{{stoneData.category}}" />
+                {{/if}}
+
+                {{#if color}}
+                    <input type="text" name="color" id="color" placeholder="Color" value="{{color}}" />
+                {{else}}
+                    <input type="text" name="color" id="color" placeholder="Color" value="{{stoneData.color}}" />
+                {{/if}}
+
+                {{#if image}}                
+                    <input type="text" name="image" id="stone-img" placeholder="Image" value="{{image}}" />
+                {{else}}
+                    <input type="text" name="image" id="stone-img" placeholder="Image" value="{{stoneData.image}}" />
+                {{/if}}
+
+                {{#if location}}
+                    <input type="text" name="location" id="location" placeholder="Location" value="{{location}}" />
+                {{else}}
+                    <input type="text" name="location" id="location" placeholder="Location" value="{{stoneData.location}}" />
+                {{/if}}
+
+                {{#if formula}}
+                    <input type="text" name="formula" id="formula" placeholder="Formula" value="{{formula}}" />
+                {{else}}
+                    <input type="text" name="formula" id="formula" placeholder="Formula" value="{{stoneData.formula}}" />
+                {{/if}}
+
+                {{#if description}}
+                    <textarea id="description" placeholder="Description..." name="description">{{description}}
+                    </textarea>
+                {{else}}
+                    <textarea id="description" placeholder="Description..." name="description">{{stoneData.description}}
+                    </textarea>
+                {{/if}}
+                
                 <button type="submit">Edit</button>
             </form>
         </div>

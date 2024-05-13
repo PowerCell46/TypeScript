@@ -13,12 +13,13 @@ export function createHandler(req: Request, res: Response) {
     const {name, category, color, image, location, formula, description} = req.body;
     const userId = (req as any).userId as string;
 
-    // move to a service
     Stone.create({name, category, color, image, location, formula, description, owner: userId})
         .then((stone: StoneInterface) => {
             // console.log(stone);
 
             res.redirect(SERVER_ENDPOINTS.dashboard);
         })
-        .catch((err: Error) => console.error(err));
+        .catch((err: Error) => res.render("create", {error: "Error with the creation!", 
+            name, category, color, image, location, formula, description
+        }));
 }

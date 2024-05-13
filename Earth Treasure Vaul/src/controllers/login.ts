@@ -25,10 +25,23 @@ export function loginHandler(req: Request, res: Response) {
                         console.log(`User ${user.email} successfully logged in!`);
 
                         res.redirect(SERVER_ENDPOINTS.home);
+
+                    } else {
+                        console.log(`Invalid Password!`);
+                        
+                        res.render("login", {error: "Invalid email or password!", email});
                     }
                 })
-                .catch((err: Error) => console.error(err));
+                .catch((err: Error) => {
+                    console.log(`Error verifying the password!`);
+                    
+                    res.render("login", {error: "Internal server error!", email});
+                });
             
         })
-        .catch((err: Error) => console.error(err));
+        .catch((err: Error) => {
+            console.log(`Error finding the user!`);
+            
+            res.render("login", {error: "Invalid email or password!", email});
+        });
 }

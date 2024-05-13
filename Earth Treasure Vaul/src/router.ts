@@ -10,6 +10,8 @@ import { getDetailsView } from "./controllers/details";
 import { editHandler, getEditView } from "./controllers/edit";
 import { getErrorView } from "./controllers/error";
 import {deleteHandler} from "./controllers/delete";
+import { authForbidden, authRequired, creatorRequired } from "./middlewares/authMiddleware";
+import likeHandler from "./controllers/like";
 
 
 router
@@ -17,33 +19,43 @@ router
 
 
 router.route(SERVER_ENDPOINTS.register)
-.get(getRegisterView)
-.post(registerHandler);
+.get(authForbidden, getRegisterView)
+.post(authForbidden, registerHandler);
+
 
 router.route(SERVER_ENDPOINTS.login)
-.get(getLoginView)
-.post(loginHandler);
+.get(authForbidden, getLoginView)
+.post(authForbidden, loginHandler);
+
 
 router
-.get(SERVER_ENDPOINTS.logout, logoutHandler);
+.get(SERVER_ENDPOINTS.logout, authRequired, logoutHandler);
 
 
 router.route(SERVER_ENDPOINTS.create)
-.get(getCreateView)
-.post(createHandler);
+.get(authRequired, getCreateView)
+.post(authRequired, createHandler);
+
 
 router
 .get(SERVER_ENDPOINTS.dashboard, getDashboardView);
 
+
 router
 .get(`${SERVER_ENDPOINTS.details}/:id`, getDetailsView);
 
+
+router.get(`${SERVER_ENDPOINTS.like}/:id`, authRequired, likeHandler);
+
+
 router.route(`${SERVER_ENDPOINTS.edit}/:id`)
-.get(getEditView)
-.post(editHandler);
+.get(creatorRequired, getEditView)
+.post(creatorRequired, editHandler);
+
 
 router
-.get(`${SERVER_ENDPOINTS.delete}/:id`, deleteHandler);
+.get(`${SERVER_ENDPOINTS.delete}/:id`, creatorRequired, deleteHandler);
+
 
 router
 .all("*", getErrorView);

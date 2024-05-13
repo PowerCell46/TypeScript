@@ -10,5 +10,7 @@ export function getDashboardView(req: Request, res: Response): void {
             
             res.render("dashboard", {hasStones: stones.length > 0, stones});            
         })
-        .catch(err => console.error(err));
+        .catch((err: Error) => 
+            res.render("error", {error: "Error fetching the data!"}
+        ));
 }

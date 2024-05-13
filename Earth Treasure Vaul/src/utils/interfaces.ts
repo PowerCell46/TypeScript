@@ -9,6 +9,7 @@ export interface ENDPOINTS {
     edit: string,
     delete: string,
     error: string
+    like: string,
     search: string, // ???
 }
 

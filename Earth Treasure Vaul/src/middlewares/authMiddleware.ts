@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { ENDPOINTS, ExpressNext } from "../utils/interfaces";
+import { ENDPOINTS, ExpressNext, StoneInterface } from "../utils/interfaces";
 import { SERVER_ENDPOINTS } from "../utils/constants";
 import { getToken, removeCookie, verifyToken } from "../utils/authUtils";
+import { getSingleStone } from "../services/stonesService";
 
 
-export function authMiddleware(req: Request, res: Response, next: ExpressNext) {
+export function authMiddleware(req: Request, res: Response, next: ExpressNext): void{
     const token = getToken(req);
 
     if (token) {
@@ -33,4 +34,43 @@ export function authMiddleware(req: Request, res: Response, next: ExpressNext) {
 
 
     next();
+}
+
+
+export function authRequired(req: Request, res: Response, next: ExpressNext): void {
+    if (!res.locals.isAuthenticated) {
+        res.redirect(SERVER_ENDPOINTS.error);
+    
+    } else {
+        next();
+    }
+}
+
+
+export function authForbidden(req: Request, res: Response, next: ExpressNext): void {
+    console.log("FORBIDDEN MIDDLEWARE");
+    
+    if (res.locals.isAuthenticated) {
+        res.redirect(SERVER_ENDPOINTS.error);
+    
+    } else {
+        next();
+    }
+}
+
+
+export function creatorRequired(req: Request, res: Response, next: ExpressNext): void {
+    const stoneId: string = req.params.id;
+    const userId = (req as any).userId as string;
+
+    getSingleStone(stoneId)
+        .then((stoneData: StoneInterface) => {
+            if (stoneData.owner.toString() === userId) {
+                next();
+            
+            } else {
+                res.redirect(SERVER_ENDPOINTS.error);
+            }
+        })
+        .catch(err => console.error(err));
 }
