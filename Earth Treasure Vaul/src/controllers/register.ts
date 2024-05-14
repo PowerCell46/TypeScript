@@ -3,6 +3,7 @@ import { createToken, hashPassword, setCookie } from "../utils/authUtils";
 import { User } from "../schemas/User";
 import { UserInterface } from "../utils/interfaces";
 import { SERVER_ENDPOINTS } from "../utils/constants";
+import { validateUserData } from "../utils/validators";
 
 
 export function getRegisterView(req: Request, res: Response): void {
@@ -17,6 +18,13 @@ export function registerHandler(req: Request, res: Response) {
 
     if (password !== repeatPass) {
         res.render("register", {error: "Both Passwords must match!", email});
+        return;
+    }
+
+    const validateResult = validateUserData(email, password);
+
+    if (validateResult !== true) {
+        res.render("login", {error: validateResult, email});
         return;
     }
 

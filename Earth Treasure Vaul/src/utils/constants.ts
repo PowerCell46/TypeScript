@@ -1,4 +1,4 @@
-import { ENDPOINTS } from "./interfaces";
+import { ENDPOINTS, validationRequirements } from "./interfaces";
 
 export const SERVER_PORT: number = 3001;
 
@@ -28,3 +28,24 @@ export const SERVER_ENDPOINTS: ENDPOINTS = {
     like: "/like",
     search: "/search" // ???
 };
+
+
+export const userRequirements: validationRequirements = {
+    minEmailLen: 10,
+    minPassLen: 4
+};
+
+
+export const stoneRequirements: validationRequirements = {
+    minNameLen: 2,
+    minCategoryLen: 3,
+    minColorLen: 2,
+    minFormulaLen: 5,
+    maxFormulaLen: 30,
+    minLocationLen: 5,
+    maxLocationLen: 15,
+    minDescLen: 10
+};
+
+
+export const STARTING_URLS: string[] = [`http://`, `https://`]; 

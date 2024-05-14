@@ -3,6 +3,7 @@ import { User } from "../schemas/User";
 import { UserInterface } from "../utils/interfaces";
 import { createToken, setCookie, verifyPassword } from "../utils/authUtils";
 import { SERVER_ENDPOINTS } from "../utils/constants";
+import { validateUserData } from "../utils/validators";
 
 
 export function getLoginView(req: Request, res: Response): void {
@@ -11,7 +12,15 @@ export function getLoginView(req: Request, res: Response): void {
 
 
 export function loginHandler(req: Request, res: Response) {
-    const { email, password } = req.body;
+    const email: string = req.body["email"].trim();
+    const password: string = req.body["password"].trim();
+
+    const validateResult = validateUserData(email, password);
+
+    if (validateResult !== true) {
+        res.render("login", {error: validateResult, email});
+        return;
+    }
 
     User.findOne({email})
         .then((user: UserInterface) => {

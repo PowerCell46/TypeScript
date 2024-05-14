@@ -45,3 +45,8 @@ export interface StoneInterface {
     _id: any,
     __v: number
 }
+
+
+export interface validationRequirements {
+    [key: string]: number
+}
