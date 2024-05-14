@@ -28,7 +28,7 @@ export const SERVER_ENDPOINTS: ENDPOINTS = {
     dashboard: "/dashboard",
     details: "/details",
     like: "/like",
-    search: "/search" // ???
+    search: "/search"
 };
 
 

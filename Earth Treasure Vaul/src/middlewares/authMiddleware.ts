@@ -6,7 +6,7 @@ import { getToken, verifyToken } from "../utils/tokenUtils";
 import { removeCookie } from "../utils/cookieUtils";
 
 
-export function authMiddleware(req: Request, res: Response, next: ExpressNext): void{
+export function authMiddleware(req: Request, res: Response, next: ExpressNext): void {
     const token = getToken(req);
 
     if (token) {

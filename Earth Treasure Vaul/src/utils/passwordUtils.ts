@@ -11,8 +11,3 @@ export function hashPassword(password: string): Promise<string> {
 export function verifyPassword(password: string, hashedPass: string): Promise<boolean> {
     return bcrypt.compare(password, hashedPass);
 }
-
-
-
-
-
