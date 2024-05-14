@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { ENDPOINTS, ExpressNext, StoneInterface } from "../utils/interfaces";
 import { SERVER_ENDPOINTS } from "../utils/constants";
-import { getToken, removeCookie, verifyToken } from "../utils/authUtils";
 import { getSingleStone } from "../services/stonesService";
+import { getToken, verifyToken } from "../utils/tokenUtils";
+import { removeCookie } from "../utils/cookieUtils";
 
 
 export function authMiddleware(req: Request, res: Response, next: ExpressNext): void{

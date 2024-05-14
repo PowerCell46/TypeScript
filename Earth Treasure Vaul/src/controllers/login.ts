@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
 import { User } from "../schemas/User";
 import { UserInterface } from "../utils/interfaces";
-import { createToken, setCookie, verifyPassword } from "../utils/authUtils";
 import { SERVER_ENDPOINTS } from "../utils/constants";
 import { validateUserData } from "../utils/validators";
+import { verifyPassword } from "../utils/passwordUtils";
+import { createToken } from "../utils/tokenUtils";
+import { setCookie } from "../utils/cookieUtils";
 
 
 export function getLoginView(req: Request, res: Response): void {
@@ -11,13 +13,13 @@ export function getLoginView(req: Request, res: Response): void {
 }
 
 
-export function loginHandler(req: Request, res: Response) {
+export function loginHandler(req: Request, res: Response): void {
     const email: string = req.body["email"].trim();
-    const password: string = req.body["password"].trim();
+    const password: string = req.body["password"].trim(); // sanitization
 
     const validateResult = validateUserData(email, password);
 
-    if (validateResult !== true) {
+    if (validateResult !== true) { // validation
         res.render("login", {error: validateResult, email});
         return;
     }

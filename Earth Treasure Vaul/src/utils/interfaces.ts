@@ -10,13 +10,13 @@ export interface ENDPOINTS {
     delete: string,
     error: string
     like: string,
-    search: string, // ???
-}
+    search: string,
+};
 
 
 export interface ExpressNext {
     (): void
-}
+};
 
 
 export interface UserInterface {
@@ -24,13 +24,13 @@ export interface UserInterface {
     password: string,
     _id: any,
     __v: number
-}
+};
 
 
 export interface TokenInterface {
     email: string,
     _id: string
-}
+};
 
 
 export interface StoneInterface {
@@ -44,9 +44,9 @@ export interface StoneInterface {
     owner: any,
     _id: any,
     __v: number
-}
+};
 
 
 export interface validationRequirements {
     [key: string]: number
-}
+};

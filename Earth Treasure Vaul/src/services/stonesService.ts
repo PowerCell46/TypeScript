@@ -15,3 +15,8 @@ export function getAllStones(): Promise<StoneInterface[]> {
 export function getSingleStone(id: string): Promise<StoneInterface> {
     return Stone.findById(id).lean().exec();
 }
+
+
+export function getSearchedStones(searchName: string): Promise<StoneInterface[]> {
+    return Stone.find({ name: { $regex: searchName, $options: 'i' } }).lean().exec();
+}

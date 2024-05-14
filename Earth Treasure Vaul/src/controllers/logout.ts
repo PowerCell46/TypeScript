@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { removeCookie } from "../utils/authUtils";
 import { SERVER_ENDPOINTS } from "../utils/constants";
+import { removeCookie } from "../utils/cookieUtils";
 
 
-export function logoutHandler(req: Request, res: Response) {
+export function logoutHandler(req: Request, res: Response): void {
     removeCookie(res);
     
     const userEmail = (req as any).email;

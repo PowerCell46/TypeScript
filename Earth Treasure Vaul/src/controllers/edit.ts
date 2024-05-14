@@ -11,6 +11,8 @@ export function getEditView(req: Request, res: Response): void {
 
     getSingleStone(stoneId)
         .then((stoneData: StoneInterface) => {
+            // console.log(stoneData);
+
             res.render("edit", {stoneData});
         })
         .catch((err: Error) => 
@@ -28,11 +30,11 @@ export function editHandler(req: Request, res: Response): void {
     const image: string = req.body["image"].trim();
     const location: string = req.body["location"].trim();
     const formula: string = req.body["formula"].trim();
-    const description: string = req.body["description"].trim();
+    const description: string = req.body["description"].trim(); // sanitization
 
     const validateResult = validateStoneData(name, category, color, formula, location, description, image);
 
-    if (validateResult !== true) {
+    if (validateResult !== true) { // validation
         res.render("create", {error: validateResult, name, category, color, image, location, formula, description});
         return;
     }
