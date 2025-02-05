@@ -70,7 +70,7 @@ module.exports = {
     }
 };
 ```
-7. Create folder **src** and keep the typescript files in it
+7. Create folder **src** and create a file named *index.ts* (keep the typescript files in it)
 8. Create folder **dist**, with file **bundle.js**
 9. ***(Optional)*** Create **index.html** file and connect it to the bundle.js file
 ```html
